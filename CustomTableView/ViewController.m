@@ -7,12 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "CustomCell.h"
 
-@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource, CustomCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *listArr;
 
-//@property (nonatomic, strong) NSMutableArray *testArr;
+@property (nonatomic, assign) NSInteger lastSelectCell;
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -29,8 +30,11 @@
     return _listArr;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
+    _lastSelectCell = -1;
     
     _tableView = [[UITableView alloc] init];
     self.tableView.delegate = self;
@@ -42,9 +46,42 @@
 }
 
 #pragma mark - Action
-- (void)customBtnAction:(UIButton *)button
+
+
+#pragma mark- CustomCellDelegate
+- (void)selectBtn:(UIButton *)button
 {
+    NSLog(@"%ld", button.tag);
     
+    NSInteger index = button.tag - 100;
+
+    for (int i = 0; i < self.listArr.count; i++)
+    {
+        if ([self.listArr[i] isEqualToString:@"secondCell"])
+        {
+            [self.listArr removeObjectAtIndex:i];
+            NSIndexPath *currentIndex = [NSIndexPath indexPathForRow:i + 1 inSection:0];
+            [self.tableView deleteRowsAtIndexPaths:@[currentIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }
+    
+//    if (self.lastSelectCell == index)
+//    {
+//        [self.listArr removeObjectAtIndex:index + 1];
+//        NSIndexPath *currentIndex = [NSIndexPath indexPathForRow:index + 1 inSection:0];
+//        [self.tableView deleteRowsAtIndexPaths:@[currentIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+//        self.lastSelectCell = -1;
+//    }
+//    
+    if (self.lastSelectCell != index)
+    {
+        [self.listArr insertObject:@"secondCell" atIndex:index + 1];
+        NSIndexPath *currentIndex = [NSIndexPath indexPathForRow:index + 1 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[currentIndex] withRowAnimation:UITableViewRowAnimationBottom];
+        self.lastSelectCell = index;
+    }
+    
+    NSLog(@"%@", self.listArr);
 }
 
 #pragma mark- UITableViewDelegate
@@ -65,31 +102,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *identifier = @"11";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell)
+    if ([self.listArr[indexPath.row] isEqualToString:@"secondCell"])
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                       reuseIdentifier:nil];
+        cell.textLabel.text = self.listArr[indexPath.row];
+        return cell;
     }
+    CustomCell *cell = [[CustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.textLabel.text = self.listArr[indexPath.row];
-    UIButton *customBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    customBtn.backgroundColor = [UIColor redColor];
-    [customBtn addTarget:self action:@selector(customBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-    customBtn.frame = CGRectMake(100, 0, 64, 64);
-    customBtn.tag = 100 + indexPath.row;
-    [cell addSubview:customBtn];
-    
+    cell.customBtn.tag = 100 + indexPath.row;
+    cell.delegate = self;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    [self.listArr insertObject:@"hahh" atIndex:indexPath.row + 1];
-//    NSIndexPath *currentIndex = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:0];
-//    [tableView insertRowsAtIndexPaths:@[currentIndex] withRowAnimation:UITableViewRowAnimationBottom];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-//    NSLog(@"%@", self.listArr);
 }
 
 - (void)didReceiveMemoryWarning {

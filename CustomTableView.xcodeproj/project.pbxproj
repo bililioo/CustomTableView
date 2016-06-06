@@ -13,6 +13,7 @@
 		22C8038C1D0577C20010869E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C8038A1D0577C20010869E /* Main.storyboard */; };
 		22C8038E1D0577C20010869E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22C8038D1D0577C20010869E /* Assets.xcassets */; };
 		22C803911D0577C20010869E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22C8038F1D0577C20010869E /* LaunchScreen.storyboard */; };
+		22D9C56E1D05C88B009C92C8 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9C56D1D05C88B009C92C8 /* CustomCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		22C8038D1D0577C20010869E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22C803901D0577C20010869E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		22C803921D0577C20010869E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		22D9C56C1D05C88B009C92C8 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		22D9C56D1D05C88B009C92C8 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 				22C803851D0577C20010869E /* AppDelegate.m */,
 				22C803871D0577C20010869E /* ViewController.h */,
 				22C803881D0577C20010869E /* ViewController.m */,
+				22D9C56C1D05C88B009C92C8 /* CustomCell.h */,
+				22D9C56D1D05C88B009C92C8 /* CustomCell.m */,
 				22C8038A1D0577C20010869E /* Main.storyboard */,
 				22C8038D1D0577C20010869E /* Assets.xcassets */,
 				22C8038F1D0577C20010869E /* LaunchScreen.storyboard */,
@@ -110,6 +115,7 @@
 				TargetAttributes = {
 					22C8037D1D0577C20010869E = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = FQN9DHGS7A;
 					};
 				};
 			};
@@ -151,6 +157,7 @@
 			files = (
 				22C803891D0577C20010869E /* ViewController.m in Sources */,
 				22C803861D0577C20010869E /* AppDelegate.m in Sources */,
+				22D9C56E1D05C88B009C92C8 /* CustomCell.m in Sources */,
 				22C803831D0577C20010869E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,10 +270,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CustomTableView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.urun.CustomTableView;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cb.CustomTableView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -274,10 +284,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CustomTableView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.urun.CustomTableView;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cb.CustomTableView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -300,6 +313,7 @@
 				22C803971D0577C20010869E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
