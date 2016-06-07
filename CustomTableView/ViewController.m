@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, assign) NSUInteger lastClick;
+
 @end
 
 @implementation ViewController
@@ -36,6 +38,8 @@
     
     _lastSelectCell = -1;
     
+    _lastClick = -1;
+    
     _tableView = [[UITableView alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -54,33 +58,28 @@
     NSLog(@"%ld", button.tag);
     
     NSInteger index = button.tag - 100;
-
-    for (int i = 0; i < self.listArr.count; i++)
+    
+    if ([self.listArr containsObject:@"secondCell"]) // 包含 secondCell
     {
-        if ([self.listArr[i] isEqualToString:@"secondCell"])
+        self.lastClick = [self.listArr indexOfObject:@"secondCell"]; // 获得secondCell的下标
+        [self.listArr removeObjectAtIndex:self.lastClick];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.lastClick inSection:0];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+        if (self.lastClick != index + 1)
         {
-            [self.listArr removeObjectAtIndex:i];
-            NSIndexPath *currentIndex = [NSIndexPath indexPathForRow:i + 1 inSection:0];
-            [self.tableView deleteRowsAtIndexPaths:@[currentIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.listArr insertObject:@"secondCell" atIndex:index + 1];
+            NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:index + 1 inSection:0];
+            [self.tableView insertRowsAtIndexPaths:@[indexPath2] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     }
-    
-//    if (self.lastSelectCell == index)
-//    {
-//        [self.listArr removeObjectAtIndex:index + 1];
-//        NSIndexPath *currentIndex = [NSIndexPath indexPathForRow:index + 1 inSection:0];
-//        [self.tableView deleteRowsAtIndexPaths:@[currentIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
-//        self.lastSelectCell = -1;
-//    }
-//    
-    if (self.lastSelectCell != index)
+    else
     {
         [self.listArr insertObject:@"secondCell" atIndex:index + 1];
-        NSIndexPath *currentIndex = [NSIndexPath indexPathForRow:index + 1 inSection:0];
-        [self.tableView insertRowsAtIndexPaths:@[currentIndex] withRowAnimation:UITableViewRowAnimationBottom];
-        self.lastSelectCell = index;
+        NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:index + 1 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath2] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
-    
+
     NSLog(@"%@", self.listArr);
 }
 
