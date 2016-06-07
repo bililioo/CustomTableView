@@ -23,11 +23,16 @@
 
 @implementation ViewController
 
-- (NSArray *)listArr
+- (NSMutableArray *)listArr
 {
     if (!_listArr)
     {
-        _listArr = [NSMutableArray arrayWithObjects:@"1", @"2", @"3", nil];
+        _listArr = [NSMutableArray array];
+        
+        for (int i = 0; i < 20; i++)
+        {
+            [_listArr addObject:[NSString stringWithFormat:@"%d", i]];
+        }
     }
     return _listArr;
 }
@@ -43,7 +48,7 @@
     _tableView = [[UITableView alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.tableView.frame = CGRectMake(20, 0, self.view.frame.size.width, self.view.frame.size.height-20);
     self.tableView.tableFooterView = [UIView new];
     [self.view addSubview:self.tableView];
     
@@ -57,7 +62,7 @@
 {
     NSLog(@"%ld", button.tag);
     
-    NSInteger index = button.tag - 100;
+    NSInteger index = button.tag - 1000;
     
     if ([self.listArr containsObject:@"secondCell"]) // 包含 secondCell
     {
@@ -66,16 +71,33 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.lastClick inSection:0];
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         
-        if (self.lastClick != index + 1)
+        if (self.lastClick != index + 1) // 如果上次点击的下标不等于当前的下标, 就insert一个新的 secondCell
         {
-            [self.listArr insertObject:@"secondCell" atIndex:index + 1];
-            NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:index + 1 inSection:0];
-            [self.tableView insertRowsAtIndexPaths:@[indexPath2] withRowAnimation:UITableViewRowAnimationAutomatic];
+            if (self.listArr.count < index + 1)
+            {
+                [self.listArr addObject:@"secondCell"];
+                NSIndexPath *path = [NSIndexPath indexPathForRow:[self.listArr indexOfObject:@"secondCell"] inSection:0];
+                [self.tableView insertRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+            else
+            {
+                [self.listArr insertObject:@"secondCell" atIndex:index + 1];
+                NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:index + 1 inSection:0];
+                [self.tableView insertRowsAtIndexPaths:@[indexPath2] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }
+
         }
     }
     else
     {
-        [self.listArr insertObject:@"secondCell" atIndex:index + 1];
+        if (self.listArr.count < index + 1)
+        {
+            [self.listArr addObject:@"secondCell"];
+        }
+        else
+        {
+            [self.listArr insertObject:@"secondCell" atIndex:index + 1];
+        }
         NSIndexPath *indexPath2 = [NSIndexPath indexPathForRow:index + 1 inSection:0];
         [self.tableView insertRowsAtIndexPaths:@[indexPath2] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
@@ -110,7 +132,7 @@
     }
     CustomCell *cell = [[CustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.textLabel.text = self.listArr[indexPath.row];
-    cell.customBtn.tag = 100 + indexPath.row;
+    cell.customBtn.tag = 1000 + indexPath.row;
     cell.delegate = self;
     return cell;
 }
