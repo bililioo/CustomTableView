@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22C371491D06C7B700650CA4 /* JSPatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C371481D06C7B700650CA4 /* JSPatch.framework */; };
+		22C3714B1D06C80500650CA4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C3714A1D06C80500650CA4 /* libz.tbd */; };
 		22C803831D0577C20010869E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C803821D0577C20010869E /* main.m */; };
 		22C803861D0577C20010869E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C803851D0577C20010869E /* AppDelegate.m */; };
 		22C803891D0577C20010869E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C803881D0577C20010869E /* ViewController.m */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22C371481D06C7B700650CA4 /* JSPatch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSPatch.framework; sourceTree = "<group>"; };
+		22C3714A1D06C80500650CA4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		22C8037E1D0577C20010869E /* CustomTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22C803821D0577C20010869E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		22C803841D0577C20010869E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -36,6 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22C3714B1D06C80500650CA4 /* libz.tbd in Frameworks */,
+				22C371491D06C7B700650CA4 /* JSPatch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,6 +51,7 @@
 		22C803751D0577C20010869E = {
 			isa = PBXGroup;
 			children = (
+				22C3714A1D06C80500650CA4 /* libz.tbd */,
 				22C803801D0577C20010869E /* CustomTableView */,
 				22C8037F1D0577C20010869E /* Products */,
 			);
@@ -61,6 +68,7 @@
 		22C803801D0577C20010869E /* CustomTableView */ = {
 			isa = PBXGroup;
 			children = (
+				22C371481D06C7B700650CA4 /* JSPatch.framework */,
 				22C803841D0577C20010869E /* AppDelegate.h */,
 				22C803851D0577C20010869E /* AppDelegate.m */,
 				22C803871D0577C20010869E /* ViewController.h */,
@@ -271,6 +279,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CustomTableView",
+				);
 				INFOPLIST_FILE = CustomTableView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cb.CustomTableView;
@@ -285,6 +297,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CustomTableView",
+				);
 				INFOPLIST_FILE = CustomTableView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cb.CustomTableView;

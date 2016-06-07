@@ -48,9 +48,15 @@
     _tableView = [[UITableView alloc] init];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.frame = CGRectMake(20, 0, self.view.frame.size.width, self.view.frame.size.height-20);
+    self.tableView.frame = CGRectMake(0, 300, self.view.frame.size.width, self.view.frame.size.height-300);
     self.tableView.tableFooterView = [UIView new];
-    [self.view addSubview:self.tableView];
+//    [self.view addSubview:self.tableView];
+    
+    UIView *view1 = [[UIView alloc] init];
+    view1.frame = CGRectMake(0, 0, 80, 80);
+    view1.backgroundColor = [UIColor blackColor];
+    view1.center = self.view.center;
+    [self.view addSubview:view1];
     
 }
 
