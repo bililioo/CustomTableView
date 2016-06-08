@@ -12,13 +12,14 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
+    
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
         _customBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _customBtn.backgroundColor = [UIColor redColor];
         [_customBtn addTarget:self action:@selector(customBtnAction:) forControlEvents:UIControlEventTouchUpInside];
-        _customBtn.frame = CGRectMake(300, 16, 32, 32);
+        _customBtn.frame = CGRectMake(250, 16, 32, 32);
         [self addSubview:self.customBtn];
     }
     return self;

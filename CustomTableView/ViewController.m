@@ -19,6 +19,8 @@
 
 @property (nonatomic, assign) NSUInteger lastClick;
 
+@property (nonatomic, copy) NSString *str;
+
 @end
 
 @implementation ViewController
@@ -50,18 +52,20 @@
     self.tableView.dataSource = self;
     self.tableView.frame = CGRectMake(0, 300, self.view.frame.size.width, self.view.frame.size.height-300);
     self.tableView.tableFooterView = [UIView new];
-//    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.tableView];
     
-    UIView *view1 = [[UIView alloc] init];
-    view1.frame = CGRectMake(0, 0, 80, 80);
-    view1.backgroundColor = [UIColor blackColor];
-    view1.center = self.view.center;
-    [self.view addSubview:view1];
+    UILabel *label = [[UILabel alloc] init];
+    label.frame = CGRectMake(50, 50, 30, 60);
+    label.text = [self thmod];
+    [self.view addSubview:label];
     
 }
 
 #pragma mark - Action
-
+- (NSString *)thmod
+{
+    return @"-----";
+}
 
 #pragma mark- CustomCellDelegate
 - (void)selectBtn:(UIButton *)button
@@ -119,7 +123,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.listArr.count;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

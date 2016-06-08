@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22C058F11D07F0CF00526614 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C058F01D07F0CF00526614 /* JavaScriptCore.framework */; };
 		22C371491D06C7B700650CA4 /* JSPatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C371481D06C7B700650CA4 /* JSPatch.framework */; };
 		22C3714B1D06C80500650CA4 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 22C3714A1D06C80500650CA4 /* libz.tbd */; };
 		22C803831D0577C20010869E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C803821D0577C20010869E /* main.m */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		22C058F01D07F0CF00526614 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		22C371481D06C7B700650CA4 /* JSPatch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = JSPatch.framework; sourceTree = "<group>"; };
 		22C3714A1D06C80500650CA4 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		22C8037E1D0577C20010869E /* CustomTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22C058F11D07F0CF00526614 /* JavaScriptCore.framework in Frameworks */,
 				22C3714B1D06C80500650CA4 /* libz.tbd in Frameworks */,
 				22C371491D06C7B700650CA4 /* JSPatch.framework in Frameworks */,
 			);
@@ -51,6 +54,7 @@
 		22C803751D0577C20010869E = {
 			isa = PBXGroup;
 			children = (
+				22C058F01D07F0CF00526614 /* JavaScriptCore.framework */,
 				22C3714A1D06C80500650CA4 /* libz.tbd */,
 				22C803801D0577C20010869E /* CustomTableView */,
 				22C8037F1D0577C20010869E /* Products */,
